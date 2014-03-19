@@ -1,12 +1,14 @@
 application: gdgkansascity
 version: 1
-runtime: python
+runtime: php
 api_version: 1
 
 handlers:
 - url: /css
   static_dir: css
+
 - url: /js
   static_dir: js
+
 - url: /.*
   script: index.html
