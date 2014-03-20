@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="gdgBoomerang">
+<head>
+    <title>Google Developer Group</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700' rel='stylesheet'
+          type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="css/gdg.css" rel="stylesheet" media="screen">
+    <script src="http://code.angularjs.org/1.0.8/angular.min.js"></script>
+    <script src="http://code.angularjs.org/1.0.8/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+    <!-- <script src="lib/angular.ui.min.js"></script> -->
+    <script src="js/boomerang.js"></script>
+    <script src="js/config.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-49153111-1', 'gdgkansascity.appspot.com');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body ng-controller="MainControl">
+<!-- NAV -->
+<div class="navbar navbar-static-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" ng-click="isNavCollapsed = !isNavCollapsed">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" id="gdg_chapter_name">{{ chapter_name }}</a>
+
+            <div class="nav-collapse" collapse="isNavCollapsed" ng-click="isNavCollapsed = true">
+                <ul class="nav">
+                    <li ng-class="{ 'active' : activeTab=='about' }"><a href="#about">About</a></li>
+                    <li ng-class="{ 'active' : activeTab=='news' }"><a href="#news">News</a></li>
+                    <li ng-class="{ 'active' : activeTab=='events' }"><a href="#events">Events</a></li>
+                    <!-- <li ng-class="{ 'active' : activeTab=='photos' }"><a href="#photos">Photos</a></li> -->
+                    <li><a ng-href="{{ google_plus_link }}" rel="publisher" target="_blank">Google+</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" ng-view></div>
+</div>
+</body>
+</html>
