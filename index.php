@@ -11,8 +11,7 @@
     <script src="http://code.angularjs.org/1.0.8/angular.min.js"></script>
     <script src="http://code.angularjs.org/1.0.8/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
-    <!-- <script src="lib/angular.ui.min.js"></script> -->
+    <script src="lib/angular.ui.min.js"></script>
     <script src="js/boomerang.js"></script>
     <script src="js/config.js"></script>
     <script>
