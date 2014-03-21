@@ -4,18 +4,5 @@ runtime: php
 api_version: 1
 
 handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
-
-- url: /css
-  static_dir: css
-
-- url: /js
-  static_dir: js
-
-- url: /images
-  static_dir: image
-
 - url: /.*
   script: index.php
