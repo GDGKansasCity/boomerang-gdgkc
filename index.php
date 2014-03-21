@@ -11,7 +11,7 @@
     <script src="http://code.angularjs.org/1.0.8/angular.min.js"></script>
     <script src="http://code.angularjs.org/1.0.8/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-    <script src="lib/angular.ui.min.js"></script>
+    <script src="js/lib/angular.ui.min.js"></script>
     <script src="js/boomerang.js"></script>
     <script src="js/config.js"></script>
     <script>
@@ -48,7 +48,7 @@
                     <li ng-class="{ 'active' : activeTab=='about' }"><a href="#about">About</a></li>
                     <li ng-class="{ 'active' : activeTab=='news' }"><a href="#news">News</a></li>
                     <li ng-class="{ 'active' : activeTab=='events' }"><a href="#events">Events</a></li>
-                    <!-- <li ng-class="{ 'active' : activeTab=='photos' }"><a href="#photos">Photos</a></li> -->
+                    <li ng-class="{ 'active' : activeTab=='photos' }"><a href="#photos">Photos</a></li>
                     <li><a ng-href="{{ google_plus_link }}" rel="publisher" target="_blank">Google+</a></li>
                 </ul>
             </div>
