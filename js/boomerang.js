@@ -1,6 +1,5 @@
 var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
-    .config(
-[
+    .config([
     '$httpProvider',
     '$interpolateProvider',
     '$routeProvider',
@@ -45,7 +44,6 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
         jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
             '/activities/public?callback=JSON_CALLBACK&maxResults=10&key=' + Config.google_api).
         success(function (response) {
-         console.log(response);
             var entries = [], i, j;
             for (i = 0; i < response.items.length; i++) {
                 var item = response.items[i];
