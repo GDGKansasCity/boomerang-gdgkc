@@ -17,7 +17,6 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
 
 boomerang.controller('MainControl', function ($scope, Config) {
     $scope.chapter_name = Config.name;
-
     $scope.chapter_id = Config.id;
     $scope.site_link = 'http://' + angular.lowercase(Config.name.replace(new RegExp(' ', 'g'), '')) + '.appspot.com';
     $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
@@ -83,14 +82,12 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
                                 link: attachment.fullImage.url
                             });
                             break;
-
                         case 'video':
                             thumbnails.push({
                                 url: attachment.image.url,
                                 link: attachment.url
                             });
                             break;
-
                         case 'article': case 'event':
                             html.push('<div class="link-attachment"><a href="' +
                                 attachment.url + '">' + attachment.displayName + '</a>');
@@ -136,13 +133,11 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
             });
             $scope.loading = false;
         });
-
 });
 
 boomerang.controller("EventsControl", function ($scope, $http, Config) {
     $scope.loading = true;
     $scope.$parent.activeTab = "events";
-
     $scope.events = {past: [], future: []};
     $http.get("http://gdgfresno.com/gdgfeed.php?id=" + Config.id).
         success(function (data) {
@@ -161,7 +156,6 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
             }
             $scope.loading = false;
         });
-
 });
 
 boomerang.controller("PhotosControl", function ($scope, $http, Config) {
