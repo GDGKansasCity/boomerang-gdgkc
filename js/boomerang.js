@@ -45,15 +45,20 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
         jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
             '/activities/public?callback=JSON_CALLBACK&maxResults=10&key=' + Config.google_api).
         success(function (response) {
+         console.log(response);
             var entries = [], i, j;
             for (i = 0; i < response.items.length; i++) {
                 var item = response.items[i];
                 var actor = item.actor || {};
                 var object = item.object || {};
                 // Normalize tweet to a FriendFeed-like entry.
-                var itemTitle = '<b>' + item.title + '</b>';
+                // var itemTitle = '<b>' + item.title + '</b>';
+                var itemTitle = object.content;
+                
+                if(item.annotation)
+                  itemTitle = item.annotation;
 
-                var html = [itemTitle.replace(new RegExp('\n', 'g'), '<br />')];
+                var html = [itemTitle.replace(new RegExp('\n', 'g'), '<br />').replace('<br><br>', '<br />')];
                 //html.push(' <b>Read More &raquo;</a>');
 
                 var thumbnails = [];
@@ -85,7 +90,7 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
                             });
                             break;
 
-                        case 'article':
+                        case 'article': case 'event':
                             html.push('<div class="link-attachment"><a href="' +
                                 attachment.url + '">' + attachment.displayName + '</a>');
                             if (attachment.content) {
@@ -93,11 +98,11 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
                             }
                             html.push('</div>');
                             break;
-                        case 'event':
+                        /* case 'event':
                             console.log(attachment);
-                            html.push('<b>' + attachment.displayName + '</b>');
+                            html.push('<br/><b>' + attachment.displayName + '</b>');
                             html.push('<p>' + attachment.content.replace(new RegExp('\n', 'g'), '<br />') + '</p>');
-                            break;
+                            break; */
                         default :
                             console.log(attachment.objectType);
                     }
