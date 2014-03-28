@@ -1,24 +1,16 @@
 application: gdgkansascity
 version: 1
-runtime: php
+runtime: python
 api_version: 1
 
 handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
+- url: /(.*\.(gif|png|jpg|ico|js|css))
+  static_files: \1
+  upload: (.*\.(gif|png|jpg|ico|js|css))
 
-- url: /css
-  static_dir: css
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt 
 
-- url: /js
-  static_dir: js
-
-- url: /lib
-  static_dir: lib
-
-- url: /images
-  static_dir: image
-
-- url: /.*
-  script: index.php
+- url: .*
+  script: main.py
