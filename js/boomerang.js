@@ -1,12 +1,20 @@
 var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
-    .config(function ($routeProvider) {
+    .config(
+[
+    '$httpProvider',
+    '$interpolateProvider',
+    '$routeProvider',
+    function($httpProvider, $interpolateProvider, $routeProvider) {
+        $interpolateProvider.startSymbol('{$');
+        $interpolateProvider.endSymbol('$}');
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         $routeProvider.
-            when("/about", {templateUrl: 'views/about.html', controller: "AboutControl"}).
-            when("/news", {templateUrl: 'views/news.html', controller: "NewsControl"}).
-            when("/events", {templateUrl: 'views/events.html', controller: "EventsControl"}).
-            when("/photos", {templateUrl: 'views/photos.html', controller: "PhotosControl"}).
-            otherwise({ redirectTo: '/about' });
-    });
+          when("/about", {templateUrl: 'views/about.html', controller: "AboutControl"}).
+          when("/news", {templateUrl: 'views/news.html', controller: "NewsControl"}).
+          when("/events", {templateUrl: 'views/events.html', controller: "EventsControl"}).
+          when("/photos", {templateUrl: 'views/photos.html', controller: "PhotosControl"}).
+          otherwise({ redirectTo: '/about' });
+    }]);
 
 boomerang.controller('MainControl', function ($scope, Config) {
     $scope.chapter_name = Config.name;
@@ -19,16 +27,13 @@ boomerang.controller('AboutControl', function ($scope, $http, $location, Config)
     $scope.$parent.activeTab = "about";
     $scope.cover = Config.cover;
     $http.jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
-            '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount&key=' + Config.google_api)
-        .success(function (data) {
+            '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount&key=' + Config.google_api).
+        success(function (data) {
+            console.log(data);
             $scope.desc = data.aboutMe;
             if (data.cover && data.cover.coverPhoto.url) {
                 $scope.cover.url = data.cover.coverPhoto.url;
             }
-            $scope.loading = false;
-        })
-        .error(function (data) {
-            $scope.desc = "Sorry, we failed to retrieve the About text from the Google+ API.";
             $scope.loading = false;
         });
 });
@@ -102,11 +107,11 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
 
                 var actorImage = actor.image.url;
                 actorImage = actorImage.substr(0, actorImage.length - 2) + '16';
-
+                // The replace in the item URL is a dirty quick fix for issue #20 which seems to be a g+ api bug
                 var entry = {
                     via: {
                         name: 'Google+',
-                        url: item.url
+                        url: item.url.replace('https://plus.google.com/https://plus.google.com', 'https://plus.google.com')
                     },
                     body: html,
                     date: item.updated,
@@ -150,6 +155,7 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
             }
             $scope.loading = false;
         });
+
 });
 
 boomerang.controller("PhotosControl", function ($scope, $http, Config) {
@@ -158,7 +164,7 @@ boomerang.controller("PhotosControl", function ($scope, $http, Config) {
     $scope.photos = [];
 
     var pwa = 'https://picasaweb.google.com/data/feed/api/user/' + Config.id + '/albumid/' + Config.pwa_id +
-        '?access=public&alt=json-in-script&kind=photo&max-results=50&fields=entry(title,link/@href,summary,content/@src)&v=2.0&callback=JSON_CALLBACK';
+        '?access=public&alt=json-in-script&kind=photo&max-results=20&fields=entry(title,link/@href,summary,content/@src)&v=2.0&callback=JSON_CALLBACK';
 
     $http.jsonp(pwa).
         success(function (d) {
@@ -178,39 +184,39 @@ boomerang.controller("PhotosControl", function ($scope, $http, Config) {
 
 // HTML-ified linky from http://plnkr.co/edit/IEpLfZ8gO2B9mJcTKuWY?p=preview
 boomerang.filter('htmlLinky', function($sanitize, linkyFilter) {
-	var ELEMENT_NODE = 1;
-	var TEXT_NODE = 3;
-	var linkifiedDOM = document.createElement('div');
-	var inputDOM = document.createElement('div');
+    var ELEMENT_NODE = 1;
+    var TEXT_NODE = 3;
+    var linkifiedDOM = document.createElement('div');
+    var inputDOM = document.createElement('div');
 
-	var linkify = function linkify(startNode) {
-		var i, currentNode;
+    var linkify = function linkify(startNode) {
+        var i, currentNode;
 
-		for (i = 0; i < startNode.childNodes.length; i++) {
-			currentNode = startNode.childNodes[i];
+        for (i = 0; i < startNode.childNodes.length; i++) {
+            currentNode = startNode.childNodes[i];
 
-			switch (currentNode.nodeType) {
-			case ELEMENT_NODE:
-				linkify(currentNode);
-				break;
-			case TEXT_NODE:
-				linkifiedDOM.innerHTML = linkyFilter(currentNode.textContent);
-				i += linkifiedDOM.childNodes.length - 1;
+            switch (currentNode.nodeType) {
+                case ELEMENT_NODE:
+                    linkify(currentNode);
+                    break;
+                case TEXT_NODE:
+                    linkifiedDOM.innerHTML = linkyFilter(currentNode.textContent);
+                    i += linkifiedDOM.childNodes.length - 1;
 
-				while(linkifiedDOM.childNodes.length)
-					startNode.insertBefore(linkifiedDOM.childNodes[0], currentNode);
+                    while(linkifiedDOM.childNodes.length)
+                        startNode.insertBefore(linkifiedDOM.childNodes[0], currentNode);
 
-				startNode.removeChild(currentNode);
-			}
-		}
+                    startNode.removeChild(currentNode);
+            }
+        }
 
-		return startNode;
-	};
+        return startNode;
+    };
 
-	return function(input) {
-		inputDOM.innerHTML = input;
-		return linkify(inputDOM).innerHTML;
-	};
+    return function(input) {
+        inputDOM.innerHTML = input;
+        return linkify(inputDOM).innerHTML;
+    };
 });
 
 boomerang.filter('hashLinky', function($sanitize, linkyFilter) {
