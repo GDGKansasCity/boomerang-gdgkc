@@ -1,4 +1,4 @@
-Boomerang converted for App Engine (PHP)
+Boomerang converted for App Engine (Python)
 ==============================
 This is forked from the [GDG-X boomerang] project.
 GDG boilerplate, feeds from DevSite and Google+ using AngularJS and Twitter Bootstrap.
