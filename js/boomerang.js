@@ -20,6 +20,8 @@ boomerang.controller('MainControl', function ($scope, Config) {
     $scope.chapter_id = Config.id;
     $scope.site_link = 'http://' + angular.lowercase(Config.name.replace(new RegExp(' ', 'g'), '')) + '.appspot.com';
     $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
+    $scope.meetup_link = 'http://www.meetup.com/' + Config.name.replace(new RegExp(' ', 'g'), '-');
+    $scope.twitter_link = 'https://twitter.com/' + Config.name.replace(new RegExp(' ', 'g'), '');
     $scope.isNavCollapsed = true;
 });
 
@@ -28,7 +30,7 @@ boomerang.controller('AboutControl', function ($scope, $http, $location, Config)
     $scope.$parent.activeTab = "about";
     $scope.cover = Config.cover;
     $http.jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
-            '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount&key=' + Config.google_api).
+            '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount%2Curls&key=' + Config.google_api).
         success(function (data) {
             console.log(data);
             $scope.desc = data.aboutMe;
@@ -39,7 +41,7 @@ boomerang.controller('AboutControl', function ($scope, $http, $location, Config)
         });
 });
 
-boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
+boomerang.controller("NewsControl", function ($scope, $http, $timeout, $filter, Config) {
     $scope.loading = true;
     $scope.$parent.activeTab = "news";
     $http.
@@ -47,6 +49,7 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
             '/activities/public?callback=JSON_CALLBACK&maxResults=10&key=' + Config.google_api).
         success(function (response) {
             var entries = [], i, j;
+            
             for (i = 0; i < response.items.length; i++) {
                 var item = response.items[i];
                 var actor = item.actor || {};
@@ -54,11 +57,14 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, Config) {
                 // Normalize tweet to a FriendFeed-like entry.
                 // var itemTitle = '<b>' + item.title + '</b>';
                 var itemTitle = object.content;
+                var published = $filter('date')(new Date(item.published), 'fullDate');
+                
+                var html = ['<p style="font-size:14px;">' + published + '</p>'];
                 
                 if(item.annotation)
                   itemTitle = item.annotation;
 
-                var html = [itemTitle.replace(new RegExp('\n', 'g'), '<br />').replace('<br><br>', '<br />')];
+                html.push(itemTitle.replace(new RegExp('\n', 'g'), '<br />').replace('<br><br>', '<br />'));
                 //html.push(' <b>Read More &raquo;</a>');
 
                 var thumbnails = [];
