@@ -162,7 +162,7 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
             }
             $scope.loading = false;
         });
-});
+});
 
 boomerang.controller("PhotosControl", function ($scope, $http, Config) {
     $scope.loading = true;
