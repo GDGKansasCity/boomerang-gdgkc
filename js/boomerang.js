@@ -2,7 +2,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
     .config([
     '$httpProvider',
     '$interpolateProvider',
-    '$routeProvider',
+    '$routeProvider',
     function($httpProvider, $interpolateProvider, $routeProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
