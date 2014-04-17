@@ -19,7 +19,8 @@ boomerang.controller('MainControl', function ($scope, Config) {
     $scope.chapter_name = Config.name;
     $scope.chapter_id = Config.id;
     $scope.site_link = 'http://' + angular.lowercase(Config.name.replace(new RegExp(' ', 'g'), '')) + '.appspot.com';
-    $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
+    $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
+    $scope.youtube_link = 'http://www.youtube.com/user/' + Config.name.replace(new RegExp(' ', 'g'), '');
     $scope.meetup_link = 'http://www.meetup.com/' + Config.name.replace(new RegExp(' ', 'g'), '-');
     $scope.twitter_link = 'https://twitter.com/' + Config.name.replace(new RegExp(' ', 'g'), '');
     $scope.isNavCollapsed = true;
