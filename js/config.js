@@ -6,11 +6,11 @@ boomerang.factory('Config', function () {
         'google_api'    : 'AIzaSyDI0kLAo-_krd_XFsT3snJUWnAftTApVik',
         'pwa_id'        : '109538469900571472833', //picasa web album id, must belong to google+ id above
         'cover' : {
-            title : 'Google Cloud Platform Event',
-            subtitle : 'Catch all the news and announcements and hear Google\'s vision for the cloud.',
+            title : 'Google I/O 2014',
+            subtitle : 'Google\'s annual developer event is being held June 25-26th in San Francisco, CA.',
             button : {
-                text : 'Visit cloud.google.com/LIVE',
-                url : 'https://cloud.google.com/LIVE/'
+                text : 'Learn More',
+                url : 'https://www.google.com/events/io'
             }
         }
     };
