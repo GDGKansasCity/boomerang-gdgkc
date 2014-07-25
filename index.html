@@ -1,15 +1,22 @@
 <!doctype html>
 <html ng-app="gdgBoomerang">
 <head>
-    <title>Google Developer Group - Kansas City</title>
+    <title>GDG Kansas City</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="Google Developer Groups (GDG) are technology user groups that meet to discuss the latest Technologies, Tools, SDKs, & APIs like Android, GWT, GAE, & GCP.">
     <meta name="application-name" content="GDG Boomerang">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700' rel='stylesheet' type='text/css'>
+    <meta name="fragment" content="!" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700' rel='stylesheet' type='text/css'>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="css/gdg.css" rel="stylesheet" media="screen">
-    <script src="http://code.angularjs.org/1.2.16/angular.min.js"></script>
+    <link rel="icon" sizes="16x16 32x32" href="/favicon.ico">
+    <script src="http://code.angularjs.org/1.0.8/angular.min.js"></script>
+    <script src="http://code.angularjs.org/1.0.8/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <script src="libs/angular.ui.min.js"></script>
+    <script src="js/boomerang.js"></script>
+    <script src="js/config.js"></script>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -43,7 +50,7 @@
                 <ul class="nav">
                     <li ng-class="{ 'active' : activeTab=='about' }"><a href="#!/about">About</a></li>
                     <li ng-class="{ 'active' : activeTab=='news' }"><a href="#!/news">News</a></li>
-                    <li ng-class="{ 'active' : activeTab=='events' }"><a href="!/events">Events</a></li>
+                    <li ng-class="{ 'active' : activeTab=='events' }"><a href="#!/events">Events</a></li>
                     <!-- <li ng-class="{ 'active' : activeTab=='photos' }"><a href="#!/photos">Photos</a></li> -->
                     <li><a ng-href="{$google_plus_link$}" href="{$google_plus_link$}" rel="publisher" target="_blank">Google+</a></li>
                     <li><a ng-href="{$youtube_link$}" target="_blank">YouTube</a></li>
@@ -58,11 +65,4 @@
     <div class="row" ng-view></div>
 </div>
 </body>
-
-<script src="http://code.angularjs.org/1.2.16/angular-route.min.js"></script>
-<script src="http://code.angularjs.org/1.2.16/angular-sanitize.min.js"></script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<script src="lib/angular.ui.min.js"></script>
-<script src="js/boomerang.js"></script>
-<script src="js/config.js"></script>
 </html>

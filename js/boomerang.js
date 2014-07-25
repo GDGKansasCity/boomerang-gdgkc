@@ -4,7 +4,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
     '$interpolateProvider',
     '$routeProvider',
     '$locationProvider',
-    function($httpProvider, $interpolateProvider, $routeProvider) {
+    function($httpProvider, $interpolateProvider, $routeProvider, $locationProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -20,8 +20,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
 boomerang.controller('MainControl', function ($scope, Config) {
     $scope.chapter_name = Config.name;
     $scope.chapter_id = Config.id;
-    // $scope.site_link = 'http://' + angular.lowercase(Config.name.replace(new RegExp(' ', 'g'), '')) + '.appspot.com';
-    $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
+    $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
     $scope.youtube_link = 'http://www.youtube.com/user/' + Config.name.replace(new RegExp(' ', 'g'), '');
     $scope.meetup_link = 'http://www.meetup.com/' + Config.name.replace(new RegExp(' ', 'g'), '-');
     $scope.twitter_link = 'https://twitter.com/' + Config.name.replace(new RegExp(' ', 'g'), '');
@@ -37,20 +36,25 @@ boomerang.controller('AboutControl', function ($scope, $http, $location, Config)
         success(function (data) {
             console.log(data);
             $scope.desc = data.aboutMe;
-            if (data.cover && data.cover.coverPhoto.url) {
+            if (Config.cover.url) {
+                $scope.cover.url = Config.cover.url;
+            } else if (data.cover && data.cover.coverPhoto.url) {
                 $scope.cover.url = data.cover.coverPhoto.url;
             }
             $scope.loading = false;
+        })
+        .error(function (data) {
+            $scope.desc = "Sorry, we failed to retrieve the About text from the Google+ API.";
+            $scope.loading = false;
         });
-});
+});
 
 boomerang.controller("NewsControl", function ($scope, $http, $timeout, $filter, Config) {
     $scope.loading = true;
-    $scope.$parent.activeTab = "news";
-    $http.
-        jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
-            '/activities/public?callback=JSON_CALLBACK&maxResults=10&key=' + Config.google_api).
-        success(function (response) {
+    $scope.$parent.activeTab = "news";
+    $http.jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
+        '/activities/public?callback=JSON_CALLBACK&maxResults=20&key=' + Config.google_api)
+        .success(function (response) {
             var entries = [], i, j;
             
             for (i = 0; i < response.items.length; i++) {
@@ -165,7 +169,8 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
             }
             $scope.loading = false;
         });
-});
+});
+
 
 boomerang.controller("PhotosControl", function ($scope, $http, Config) {
     $scope.loading = true;
