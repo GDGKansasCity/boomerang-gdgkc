@@ -1,10 +1,12 @@
 <!doctype html>
-<html ng-app="gdgBoomerang">
+<html ng-app="gdgBoomerang" itemscope itemtype="http://schema.org/Organization">
 <head>
     <title>GDG Kansas City</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Google Developer Groups (GDG) are technology user groups that meet to discuss the latest Technologies, Tools, SDKs, & APIs like Android, GWT, GAE, & GCP.">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta itemprop="name" content="GDG Kansas City">
+    <meta itemprop="description" content="Google Developer Groups (GDG) are technology user groups that meet to discuss the latest Technologies, Tools, SDKs, &amp; APIs like Android, GWT, GAE, &amp; GCP.">
+    <meta itemprop="image" content="http://gdgkc.org/images/gdg-logo.png">
     <meta name="application-name" content="GDG Boomerang">
     <meta name="fragment" content="!" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700' rel='stylesheet' type='text/css'>
@@ -44,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" id="gdg_chapter_name" href="#!/about">{$chapter_name$}</a>
+            <a class="brand" id="gdg_chapter_name" href="{$site_url$}">{$chapter_name$}</a>
 
             <div class="nav-collapse" collapse="isNavCollapsed" ng-click="isNavCollapsed = true">
                 <ul class="nav">
@@ -58,10 +60,19 @@
                     <li><a ng-href="{$twitter_link$}" target="_blank">Twitter</a></li>
                 </ul>
             </div>
+            
+            <!-- rich snippet -->
+            <div itemscope itemtype="http://schema.org/Organization" style="display: none;">
+                <a href="http://gdgkc.org" itemprop="url"><span itemprop="name">GDG Kansas City</span></a>
+                <img itemprop="logo" src="images/gdg-logo.png" />
+                <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                    <span itemprop="addressLocality">Kansas City</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container">
     <div class="row" ng-view></div>
 </div>
 </body>
