@@ -2,7 +2,7 @@
     <p>&nbsp;</p>
     <div class="gdg_loading" ng-show="loading"></div>
     <div class="row">
-        <img ng-show="cover.url" class="span10" ng-src="{$cover.url$}" alt="Google+ Cover Image" title="Google+ Cover Image">
+        <img ng-show="cover.url" class="span10" ng-src="{$cover.url$}" alt="Cover Image" title="Cover Image">
         <div class="span12 hidden-phone" id="cover" ng-show="cover.url">
             <div id="cover-content">
                 <h1 class="span12">{$cover.title$}</h1>
@@ -16,9 +16,10 @@
         <p class="span10" ng-bind-html-unsafe="desc"></p>
         <h4>Sponsors:</h4>
         <div>
-            <a href="https://developers.google.com/" target="_blank"><img class="sponsor" src="images/Google-Developers.png" alt="Google Developers"></a>
-            <a href="https://fiber.google.com" target="_blank"><img class="sponsor" src="images/google-fiber.jpg" style="width:180px;" alt="Sponsor Image"></a>
-            <a href="https://www.adknowledge.com/" target="_blank"><img class="sponsor" src="images/adknowledge.jpg" style="widht:180px;" alt="Sponsor Image"></a>
+            <a href="https://developers.google.com/" target="_blank"><img class="sponsor" src="images/Google-Developers.png" alt="Google Developers" title="Google Developers"></a>
+            <a href="https://fiber.google.com" target="_blank"><img class="sponsor" src="images/google-fiber.jpg" style="width:180px;" alt="Google FiberSponsor Image" title="Google FiberSponsor Image"></a>
+            <a href="https://www.adknowledge.com/" target="_blank"><img class="sponsor" src="images/adknowledge.jpg" style="width:180px;" alt="Adknowledge Sponsor Image" title="Adknowledge Sponsor Image"></a>
+            <a href="http://www.oreilly.com" target="_blank"><img class="sponsor" src="../images/oreilly.gif" alt="Orielly Sponsor Image" title="Orielly Sponsor Image"></a>
         </div>
     </div>
 </div>

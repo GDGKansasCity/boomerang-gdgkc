@@ -3,10 +3,12 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
     '$httpProvider',
     '$interpolateProvider',
     '$routeProvider',
+    '$locationProvider',
     function($httpProvider, $interpolateProvider, $routeProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        $locationProvider.hashPrefix('!');
         $routeProvider.
           when("/about", {templateUrl: 'views/about.html', controller: "AboutControl"}).
           when("/news", {templateUrl: 'views/news.html', controller: "NewsControl"}).
@@ -18,7 +20,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
 boomerang.controller('MainControl', function ($scope, Config) {
     $scope.chapter_name = Config.name;
     $scope.chapter_id = Config.id;
-    $scope.site_link = 'http://' + angular.lowercase(Config.name.replace(new RegExp(' ', 'g'), '')) + '.appspot.com';
+    // $scope.site_link = 'http://' + angular.lowercase(Config.name.replace(new RegExp(' ', 'g'), '')) + '.appspot.com';
     $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
     $scope.youtube_link = 'http://www.youtube.com/user/' + Config.name.replace(new RegExp(' ', 'g'), '');
     $scope.meetup_link = 'http://www.meetup.com/' + Config.name.replace(new RegExp(' ', 'g'), '-');
