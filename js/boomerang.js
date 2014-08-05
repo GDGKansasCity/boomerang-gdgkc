@@ -1,4 +1,4 @@
-var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
+var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ngRoute', 'ui.bootstrap'])
     .config([
     '$httpProvider',
     '$interpolateProvider',
@@ -15,163 +15,193 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ui.bootstrap'])
           when("/events", {templateUrl: 'views/events.html', controller: "EventsControl"}).
           when("/photos", {templateUrl: 'views/photos.html', controller: "PhotosControl"}).
           otherwise({ redirectTo: '/about' });
-    }]);
+ }]);
 
-boomerang.controller('MainControl', function ($scope, Config) {
+boomerang.controller('MainControl', function ($rootScope, $scope, Config) {
     $scope.chapter_name = Config.name;
     $scope.chapter_id = Config.id;
-    $scope.site_link = 'http://gdgkc.org';
-    $scope.google_plus_link = 'https://plus.google.com/' + Config.id + '?rel=author';
+    $scope.domain = Config.domain;
+    $scope.logo = Config.domiain + '/images/gdg-logo.png';
+    $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
     $scope.youtube_link = 'http://www.youtube.com/user/' + Config.name.replace(new RegExp(' ', 'g'), '');
     $scope.meetup_link = 'http://www.meetup.com/' + Config.name.replace(new RegExp(' ', 'g'), '-');
     $scope.twitter_link = 'https://twitter.com/' + Config.name.replace(new RegExp(' ', 'g'), '');
     $scope.isNavCollapsed = true;
+    $rootScope.canonical = Config.domain;
 });
 
-boomerang.controller('AboutControl', function ($scope, $http, $location, Config) {
+boomerang.controller('AboutControl', function ($scope, $http, $timeout, $location, $sce, Config) {
     $scope.loading = true;
     $scope.$parent.activeTab = "about";
     $scope.cover = Config.cover;
     $http.jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
             '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount%2Curls&key=' + Config.google_api).
         success(function (data) {
-            console.log(data);
             $scope.desc = data.aboutMe;
+            $sce.trustAsHtml($scope.desc);
+
             if (Config.cover.url) {
                 $scope.cover.url = Config.cover.url;
             } else if (data.cover && data.cover.coverPhoto.url) {
                 $scope.cover.url = data.cover.coverPhoto.url;
             }
+
+            var users = [];
+            for (i=0; i < data.urls.length; i++) {
+                var url = data.urls[i];
+                if (url.label.substring(0, 9) == 'Organizer') {
+                    var user = {
+                        link: url.value
+                    };
+                    users.push(user);
+                }
+            }
+            $scope.organizers = users;
+            $timeout(function () {
+                gapi.person.go();
+            });
             $scope.loading = false;
         })
         .error(function (data) {
             $scope.desc = "Sorry, we failed to retrieve the About text from the Google+ API.";
             $scope.loading = false;
         });
-});
+});
 
-boomerang.controller("NewsControl", function ($scope, $http, $timeout, $filter, Config) {
+boomerang.controller("NewsControl", function ($scope, $http, $timeout, $filter, $sce, Config) {
     $scope.loading = true;
-    $scope.$parent.activeTab = "news";
+    $scope.$parent.activeTab = "news";
+
     $http.jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
         '/activities/public?callback=JSON_CALLBACK&maxResults=20&key=' + Config.google_api)
         .success(function (response) {
-            var entries = [], i, j;
+            var entries = [], i, j, k;
+            var item, actor, object, itemTitle, html, thumbnails, attachments, attachment;
+            var upper, published, actorImage, entry;
             
             for (i = 0; i < response.items.length; i++) {
-                var item = response.items[i];
-                var actor = item.actor || {};
-                var object = item.object || {};
-                // Normalize tweet to a FriendFeed-like entry.
-                // var itemTitle = '<b>' + item.title + '</b>';
-                var itemTitle = object.content;
-                var published = $filter('date')(new Date(item.published), 'fullDate');
+              item = response.items[i];
+              actor = item.actor || {};
+              object = item.object || {};
+              itemTitle = object.content;
+              published = $filter('date')(new Date(item.published), 'fullDate');
+              html = ['<p style="font-size:14px;">' + published + '</p>'];
                 
-                var html = ['<p style="font-size:14px;">' + published + '</p>'];
-                
-                if(item.annotation)
+              if(item.annotation) {
                   itemTitle = item.annotation;
+              }
 
-                html.push(itemTitle.replace(new RegExp('\n', 'g'), '<br />').replace('<br><br>', '<br />'));
-                //html.push(' <b>Read More &raquo;</a>');
+              html.push(itemTitle.replace(new RegExp('\n', 'g'), '<br />').replace('<br><br>', '<br />'));
 
-                var thumbnails = [];
+              thumbnails = [];
+              attachments = object.attachments || [];
+              
+              for (j = 0; j < attachments.length; j++) {
+                attachment = attachments[j];
+                  switch (attachment.objectType) {
+                      case 'album':
+                        upper = attachment.thumbnails.length > 10 ? 10 : attachment.thumbnails.length;
+                          html.push('<ul class="thumbnails">');
+                        for (k = 0; k < upper; k++) {
+                            html.push('<li class="span2"><a href="' + attachment.thumbnails[k].url + '" target="_blank">' +
+                                '<img src="' + attachment.thumbnails[k].image.url + '" /></a></li>');
+                          }
+                          html.push('</ul>');
+                          break;
+                          
+                      case 'photo':
+                          thumbnails.push({
+                              url: attachment.image.url,
+                            link: attachment.fullImage.url
+                          });
+                          break;
 
-                var attachments = object.attachments || [];
-                for (j = 0; j < attachments.length; j++) {
-                    var attachment = attachments[j];
-                    switch (attachment.objectType) {
-                        case 'album':
-                            break;// TODO needs more work
-                            var upper = attachment.thumbnails.length > 7 ? 7 : attachment.thumbnails.length;
-                            html.push('<ul class="thumbnails">');
-                            for (var k = 1; k < upper; k++) {
-                                html.push('<li class="span2"><img src="' + attachment.thumbnails[k].image.url + '" /></li>');
-                            }
-                            html.push('</ul>');
-                            break;
-                        case 'photo':
-                            thumbnails.push({
-                                url: attachment.image.url,
-                                link: attachment.fullImage.url
-                            });
-                            break;
-                        case 'video':
-                            thumbnails.push({
-                                url: attachment.image.url,
-                                link: attachment.url
-                            });
-                            break;
-                        case 'article': case 'event':
+                      case 'video':
+                          thumbnails.push({
+                              url: attachment.image.url,
+                              link: attachment.url
+                          });
+                          break;
+
+                      case 'article':
+                      case 'event':
                             html.push('<div class="link-attachment"><a href="' +
-                                attachment.url + '">' + attachment.displayName + '</a>');
+                              attachment.url + '" target="_blank">' + attachment.displayName + '</a>');
                             if (attachment.content) {
-                                html.push('<br>' + attachment.content + '');
+                              html.push('<br>' + attachment.content);
                             }
                             html.push('</div>');
                             break;
-                        /* case 'event':
-                            console.log(attachment);
-                            html.push('<br/><b>' + attachment.displayName + '</b>');
-                            html.push('<p>' + attachment.content.replace(new RegExp('\n', 'g'), '<br />') + '</p>');
-                            break; */
-                        default :
-                            console.log(attachment.objectType);
-                    }
-                }
+                      
+                      default :
+                          console.log(attachment.objectType);
+                  }
+              }
 
-                html = html.join('');
+              html = html.join('');
+              $sce.trustAsHtml(html);
 
-                var actorImage = actor.image.url;
-                actorImage = actorImage.substr(0, actorImage.length - 2) + '16';
-                // The replace in the item URL is a dirty quick fix for issue #20 which seems to be a g+ api bug
-                var entry = {
-                    via: {
-                        name: 'Google+',
-                        url: item.url.replace('https://plus.google.com/https://plus.google.com', 'https://plus.google.com')
-                    },
-                    body: html,
-                    date: item.updated,
-                    reshares: (object.resharers || {}).totalItems,
-                    plusones: (object.plusoners || {}).totalItems,
-                    comments: (object.replies || {}).totalItems,
-                    thumbnails: thumbnails,
-                    icon: actorImage
-                };
+              actorImage = actor.image.url;
+              actorImage = actorImage.substr(0, actorImage.length - 2) + '16';
 
-                entries.push(entry);
+              entry = {
+                  via: {
+                    name: 'Google+',
+                    url: item.url
+                  },
+                  body: html,
+                  date: item.updated,
+                  reshares: (object.resharers || {}).totalItems,
+                  plusones: (object.plusoners || {}).totalItems,
+                  comments: (object.replies || {}).totalItems,
+                  thumbnails: thumbnails,
+                  icon: actorImage
+              };
+
+              entries.push(entry);
             }
             $scope.news = entries;
             $timeout(function () {
                 gapi.plusone.go();
             });
-            $scope.loading = false;
-        });
+          $scope.loading = false;
+          $scope.status = 'ready';
+      })
+      .error(function (response) {
+          $scope.desc = "Sorry, we failed to retrieve the News from the Google+ API.";
+          $scope.loading = false;
+          $scope.status = 'ready';
+      });
 });
 
 boomerang.controller("EventsControl", function ($scope, $http, Config) {
     $scope.loading = true;
     $scope.$parent.activeTab = "events";
+    
     $scope.events = {past: [], future: []};
-    $http.get("http://gdgfresno.com/gdgfeed.php?id=" + Config.id).
-        success(function (data) {
+    var url = "http://hub.gdgx.io/api/v1/chapters/"+Config.id+"/events?callback=JSON_CALLBACK";
+    var httpConfig = { 'headers': {'Accept': 'application/json;'}, 'timeout': 2000 };
+    $http.jsonp(url, httpConfig).
+        success(function(data){
             var now = new Date();
-            for (var i = data.length - 1; i >= 0; i--) {
-                var start = new Date(data[i].start);
+            var items = data.items;
+            var i, start;
+            for(i=items.length-1;i>=0;i--){
+                start = new Date(items[i].start);
 
-                data[i].start = start;
-                data[i].end = new Date(data[i].end);
+                items[i].start = start;
+                items[i].end = new Date(items[i].end);
+                items[i].description = items[i].about.replace(new RegExp('<br />', 'g'), ''); // rip out extra breaks
+                if (start < now){
+                    $scope.events.past.push(items[i]);
 
-                if (start < now) {
-                    $scope.events.past.push(data[i]);
                 } else {
-                    $scope.events.future.push(data[i]);
+                    $scope.events.future.push(items[i]);
                 }
             }
             $scope.loading = false;
         });
 });
-
 
 boomerang.controller("PhotosControl", function ($scope, $http, Config) {
     $scope.loading = true;
@@ -193,6 +223,10 @@ boomerang.controller("PhotosControl", function ($scope, $http, Config) {
                 };
                 $scope.photos.push(photo);
             }
+            $scope.loading = false;
+        })
+        .error(function (data) {
+            $scope.error_msg = "Sorry, we failed to retrieve the Photos from the Picasa Web Albums API. Logging out of your Google Account and logging back in may resolve this issue.";
             $scope.loading = false;
         });
 });

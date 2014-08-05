@@ -4,7 +4,7 @@
     <ul id="news-feed">
         <li ng-repeat="article in news">
             <img class="icon" ng-src="{$article.icon$}" alt="Article Icon" title="Article Icon">
-            <p ng-bind-html-unsafe="article.body"></p>
+            <p ng-bind-html="article.body"></p>
 
             <ul class="thumbnails">
                 <li ng-repeat="tn in article.thumbnails">
