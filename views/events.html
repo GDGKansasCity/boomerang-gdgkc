@@ -24,9 +24,9 @@
             </a>
             <div class="media-body">
                 <h4 class="media-heading">
-                    <a ng-href="{$event.gPlusEventLink$}" target="_blank">{$event.title$}</a>
+                    <a ng-href="{$event.eventUrl$}" target="_blank">{$event.title$}</a>
                 </h4>
-                <h5>{$event.location$}<br/>{$event.start | date:'EEEE, MMMM d, y - h:mm a'$}</h5>
+                <h5><a ng-href="{$event.locationUrl$}" target="_blank">{$event.location$}</a><br/>{$event.start | date:'EEEE, MMMM d, y - h:mm a'$}</h5>
                 <p ng-bind-html="event.description | htmlLinky | hashLinky"></p>
             </div>
         </div>

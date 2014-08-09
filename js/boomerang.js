@@ -192,6 +192,7 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
                 items[i].start = start;
                 items[i].end = new Date(items[i].end);
                 items[i].description = items[i].about.replace(new RegExp('<br />', 'g'), ''); // rip out extra breaks
+                items[i].locationUrl = 'http://maps.google.com/?q='+items[i].location.replace(new RegExp(' ', 'g'), '+').replace(new RegExp(',', 'g'), '');
                 if (start < now){
                     $scope.events.past.push(items[i]);
 
