@@ -22,10 +22,12 @@ boomerang.controller('MainControl', function ($rootScope, $scope, Config) {
     $scope.chapter_id = Config.id;
     $scope.domain = Config.domain;
     $scope.logo = Config.domiain + '/images/gdg-logo.png';
+    $scope.photos = Config.pwa_id;
     $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
-    $scope.youtube_link = 'http://www.youtube.com/user/' + Config.name.replace(new RegExp(' ', 'g'), '');
-    $scope.meetup_link = 'http://www.meetup.com/' + Config.name.replace(new RegExp(' ', 'g'), '-');
-    $scope.twitter_link = 'https://twitter.com/' + Config.name.replace(new RegExp(' ', 'g'), '');
+    $scope.youtube_link = Config.youtube ? 'http://www.youtube.com/user/' + Config.youtube : '';
+    $scope.meetup_link = Config.meetup ? 'http://www.meetup.com/' + Config.meetup : '';
+    $scope.twitter_link = Config.twitter ? 'https://twitter.com/' + Config.twitter : '';
+    $scope.facebook_link = Config.facebook ? 'https://www.facebook.com/' + Config.facebook : '';
     $scope.isNavCollapsed = true;
     $rootScope.canonical = Config.domain;
 });

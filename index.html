@@ -10,7 +10,8 @@
     <meta name="application-name" content="GDG Boomerang">
     <meta name="fragment" content="!" />
     <link rel="canonical" href="http://gdgkc.org" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,700italic,300,700' rel='stylesheet' type='text/css'>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="css/gdg.css" rel="stylesheet" media="screen">
     <link rel="icon" sizes="16x16 32x32" href="/favicon.ico">
@@ -57,11 +58,12 @@
                     <li ng-class="{ 'active' : activeTab=='about' }"><a href="#!/about">About</a></li>
                     <li ng-class="{ 'active' : activeTab=='news' }"><a href="#!/news">News</a></li>
                     <li ng-class="{ 'active' : activeTab=='events' }"><a href="#!/events">Events</a></li>
-                    <!-- <li ng-class="{ 'active' : activeTab=='photos' }"><a href="#!/photos">Photos</a></li> -->
-                    <li><a ng-href="{$google_plus_link$}" href="{$google_plus_link$}" rel="publisher" target="_blank">Google+</a></li>
-                    <li><a ng-href="{$youtube_link$}" target="_blank">YouTube</a></li>
-                    <li><a ng-href="{$meetup_link$}" target="_blank">Meetup</a></li>
-                    <li><a ng-href="{$twitter_link$}" target="_blank">Twitter</a></li>
+                    <li ng-show="photos" ng-class="{ 'active' : activeTab=='photos' }"><a href="#!/photos">Photos</a></li>
+                    <li ng-show="google_plus_link"><a ng-href="{$google_plus_link$}" href="{$google_plus_link$}" rel="publisher" target="_blank">Google+</a></li>
+                    <li ng-show="youtube_link"><a ng-href="{$youtube_link$}" target="_blank">YouTube</a></li>
+                    <li ng-show="meetup_link"><a ng-href="{$meetup_link$}" target="_blank">Meetup</a></li>
+                    <li ng-show="twitter_link"><a ng-href="{$twitter_link$}" target="_blank">Twitter</a></li>
+                    <li ng-show="facebook_link"><a ng-href="{$facebook_link$}" target="_blank">Facebook</a></li>
                 </ul>
             </div>
             
