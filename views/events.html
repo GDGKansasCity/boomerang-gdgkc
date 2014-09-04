@@ -11,7 +11,7 @@
                 <h4 class="media-heading">
                     <a ng-href="{$event.eventUrl$}" target="_blank">{$event.title$}</a>
                 </h4>
-                <h5>{$event.location$}<br/>{$event.start | date:'EEEE, MMMM d, y - h:mm a'$}</h5>
+                <h5><a ng-href="{$event.locationUrl$}" target="_blank">{$event.location$}&nbsp;<img src="../images/map_pin.png" width="22px" alt="Map" title="Map"/></a><br/>{$event.start | date:'EEEE, MMMM d, y - h:mm a'$}</h5>
                 <p ng-bind-html="event.description | htmlLinky | hashLinky"></p>
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <h4 class="media-heading">
                     <a ng-href="{$event.eventUrl$}" target="_blank">{$event.title$}</a>
                 </h4>
-                <h5><a ng-href="{$event.locationUrl$}" target="_blank">{$event.location$}</a><br/>{$event.start | date:'EEEE, MMMM d, y - h:mm a'$}</h5>
+                <h5><a ng-href="{$event.locationUrl$}" target="_blank">{$event.location$}&nbsp;<img src="../images/map_pin.png" width="22px" alt="Map" title="Map"/></a><br/>{$event.start | date:'EEEE, MMMM d, y - h:mm a'$}</h5>
                 <p ng-bind-html="event.description | htmlLinky | hashLinky"></p>
             </div>
         </div>
