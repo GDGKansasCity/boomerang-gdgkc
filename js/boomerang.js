@@ -35,7 +35,11 @@ boomerang.controller('MainControl', function ($rootScope, $scope, $location, $wi
         $window.ga('send', 'pageview', { page: $location.path() });
     });
     
-    $scope.gaButtonEvent = function() {
+    $scope.gaButtonClick = function() {
+        $window.ga('send', 'event', 'button', 'click', Config.cover.title);
+    }
+    
+    $scope.gaSponsorClick = function() {
         $window.ga('send', 'event', 'button', 'click', Config.cover.title);
     }
 });
@@ -44,6 +48,7 @@ boomerang.controller('AboutControl', function ($scope, $http, $timeout, $locatio
     $scope.loading = true;
     $scope.$parent.activeTab = "about";
     $scope.cover = Config.cover;
+    $scope.sponsors = Config.sponsors;
     $http.jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
             '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount%2Curls&key=' + Config.google_api).
         success(function (data) {

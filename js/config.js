@@ -18,6 +18,40 @@ boomerang.factory('Config', function () {
                 text : 'Register Now!',
                 url : 'http://www.eventbrite.com/e/devfestkc-2014-tickets-13599461355?ref=ebtnebregn'
             }
+        },
+        'sponsors' : {
+            0 : {
+                id : 1,
+                name : 'Google Developers',
+                url : 'https://developers.google.com/',
+                image : {
+                    url : '../images/Google-Developers.png'
+                }
+            },
+            1 : {
+                id : 2,
+                name : 'Google Fiber',
+                url : 'https://fiber.google.com',
+                image : {
+                    url : '../images/google-fiber.jpg'
+                }
+            },
+            2 : {
+                id : 3,
+                name : 'Adknowledge',
+                url : 'https://www.adknowledge.com/',
+                image : {
+                    url : '../images/adknowledge.jpg'
+                }
+            },
+            3 : {
+                id : 4,
+                name : 'Orielly',
+                url : 'https://www.oreilly.com/',
+                image : {
+                    url : '../images/oreilly.gif'
+                }
+            }
         }
     };
 });

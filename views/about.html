@@ -8,7 +8,7 @@
                 <h1 class="span12" itemprop="name">{$cover.title$}</h1>
                 <p class="span12" itemprop="description">{$cover.subtitle$}</p>
                 <p class="span12">
-                    <a class="btn btn-primary btn-large" ng-href="{$cover.button.url$}" ng-click="gaButtonEvent()" target="_blank">{$cover.button.text$}</a>
+                    <a class="btn btn-primary btn-large" ng-href="{$cover.button.url$}" ng-click="gaButtonClick()" target="_blank">{$cover.button.text$}</a>
                 </p>
             </div>
         </div>
@@ -24,11 +24,8 @@
         </div>
         <div class="span10">
           <h4>Sponsors:</h4>
-          <div>
-              <a href="https://developers.google.com/" target="_blank"><img class="sponsor" src="../images/Google-Developers.png" alt="Google Developers" title="Google Developers"></a>
-              <a href="https://fiber.google.com" target="_blank"><img class="sponsor" src="../images/google-fiber.jpg" style="width:180px;" alt="Google Fiber Sponsor Image" title="Google Fiber Sponsor Image"></a>
-              <a href="https://www.adknowledge.com/" target="_blank"><img class="sponsor" src="../images/adknowledge.jpg" style="width:180px;" alt="Adknowledge Sponsor Image" title="Adknowledge Sponsor Image"></a>
-              <a href="http://www.oreilly.com" target="_blank"><img class="sponsor" src="../images/oreilly.gif" alt="Orielly Sponsor Image" title="Orielly Sponsor Image"></a>
+          <div ng-repeat="sponsor in sponsors" class="sponsor">
+              <a ng-href="{$sponsor.url$}" target="_blank"><img ng-src="{$sponsor.image.url$}" alt="{$sponsor.name$} Sponsor Image" title="{$sponsor.name$} Sponsor Image"></a>
           </div>
         </div>
     </div>
