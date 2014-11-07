@@ -35,12 +35,8 @@ boomerang.controller('MainControl', function ($rootScope, $scope, $location, $wi
         $window.ga('send', 'pageview', { page: $location.path() });
     });
     
-    $scope.gaButtonClick = function() {
-        $window.ga('send', 'event', 'button', 'click', Config.cover.title);
-    }
-    
-    $scope.gaSponsorClick = function() {
-        $window.ga('send', 'event', 'button', 'click', Config.cover.title);
+    $scope.gaClick = function(category, action, label, value) {
+        $window.ga('send', 'event', category, action, label, value);
     }
 });
 
