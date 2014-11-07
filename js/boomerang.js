@@ -20,7 +20,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ngRoute', 'ui.boo
 boomerang.controller('MainControl', function ($rootScope, $scope, Config) {
     $scope.chapter_name = Config.name;
     $scope.chapter_id = Config.id;
-    $scope.domain = Config.domain;
+    $scope.domain = 'http://' + Config.domain;
     $scope.logo = Config.domiain + '/images/gdg-logo.png';
     $scope.photos = Config.pwa_id;
     $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
