@@ -17,7 +17,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ngRoute', 'ui.boo
           otherwise({ redirectTo: '/about' });
  }]);
 
-boomerang.controller('MainControl', function ($rootScope, $scope, Config) {
+boomerang.controller('MainControl', function ($rootScope, $scope, $location, $window, Config) {
     $scope.chapter_name = Config.name;
     $scope.chapter_id = Config.id;
     $scope.domain = 'http://' + Config.domain;
@@ -30,6 +30,14 @@ boomerang.controller('MainControl', function ($rootScope, $scope, Config) {
     $scope.facebook_link = Config.facebook ? 'https://www.facebook.com/' + Config.facebook : '';
     $scope.isNavCollapsed = true;
     $rootScope.canonical = Config.domain;
+    
+    $scope.$on('$viewContentLoaded', function(event) {
+        $window.ga('send', 'pageview', { page: $location.path() });
+    });
+    
+    $scope.gaButtonEvent = function() {
+        $window.ga('send', 'event', 'button', 'click', Config.cover.title);
+    }
 });
 
 boomerang.controller('AboutControl', function ($scope, $http, $timeout, $location, $sce, Config) {

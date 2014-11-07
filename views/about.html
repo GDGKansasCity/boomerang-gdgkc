@@ -8,7 +8,7 @@
                 <h1 class="span12" itemprop="name">{$cover.title$}</h1>
                 <p class="span12" itemprop="description">{$cover.subtitle$}</p>
                 <p class="span12">
-                    <a class="btn btn-primary btn-large" ng-href="{$cover.button.url$}" target="_blank">{$cover.button.text$}</a>
+                    <a class="btn btn-primary btn-large" ng-href="{$cover.button.url$}" ng-click="gaButtonEvent()" target="_blank">{$cover.button.text$}</a>
                 </p>
             </div>
         </div>
