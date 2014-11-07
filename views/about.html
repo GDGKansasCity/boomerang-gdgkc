@@ -1,12 +1,12 @@
 <div class="span10">
     <p>&nbsp;</p>
     <div class="gdg_loading" ng-show="loading"></div>
-    <div class="row">
-        <img ng-show="cover.url" class="span10" ng-src="{$cover.url$}" alt="Cover Image" title="Cover Image">
+    <div class="row" itemscope itemtype="http://schema.org/Event">
+        <img itemprop="image" ng-show="cover.url" class="span10" ng-src="{$cover.url$}" alt="Cover Image" title="Cover Image">
         <div class="span12 hidden-phone" id="cover" ng-show="cover.url">
             <div id="cover-content">
-                <h1 class="span12">{$cover.title$}</h1>
-                <p class="span12">{$cover.subtitle$}</p>
+                <h1 class="span12" itemprop="name">{$cover.title$}</h1>
+                <p class="span12" itemprop="description">{$cover.subtitle$}</p>
                 <p class="span12">
                     <a class="btn btn-primary btn-large" ng-href="{$cover.button.url$}" target="_blank">{$cover.button.text$}</a>
                 </p>

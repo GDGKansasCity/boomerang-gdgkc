@@ -9,6 +9,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ngRoute', 'ui.boo
         $interpolateProvider.endSymbol('$}');
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         $locationProvider.hashPrefix('!');
+        //$locationProvider.html5Mode(true);
         $routeProvider.
           when("/about", {templateUrl: 'views/about.html', controller: "AboutControl"}).
           when("/news", {templateUrl: 'views/news.html', controller: "NewsControl"}).
@@ -20,7 +21,7 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ngRoute', 'ui.boo
 boomerang.controller('MainControl', function ($rootScope, $scope, Config) {
     $scope.chapter_name = Config.name;
     $scope.chapter_id = Config.id;
-    $scope.domain = Config.domain;
+    $scope.domain = 'http://' + Config.domain;
     $scope.logo = Config.domiain + '/images/gdg-logo.png';
     $scope.photos = Config.pwa_id;
     $scope.google_plus_link = 'https://plus.google.com/' + Config.id;
@@ -88,7 +89,7 @@ boomerang.controller("NewsControl", function ($scope, $http, $timeout, $filter, 
               itemTitle = object.content;
               published = $filter('date')(new Date(item.published), 'fullDate');
               html = ['<p style="font-size:14px;">' + published + '</p>'];
-                
+              
               if(item.annotation) {
                   itemTitle = item.annotation;
               }
