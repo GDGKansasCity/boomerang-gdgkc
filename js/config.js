@@ -11,12 +11,12 @@ boomerang.factory('Config', function () {
         'meetup'        : 'GDG-Kansas-City', // MeetUp handle
         'facebook'      : '', // Facebook handle
         'cover' : {
-            title : 'DevFestKC 2014',
-            subtitle : 'Join us Nov. 15th for a fun filled day spanning many different Google developer tools and platforms, plus cool prizes!!',
-            url : '/images/cover/devfestkc14.png',
+            title : 'Made With Code',
+            subtitle : 'Light up a tree at the White House through Made With Code!',
+            url : '/images/cover/made_with_code.png',
             button : {
-                text : 'Register Now!',
-                url : 'http://www.eventbrite.com/e/devfestkc-2014-tickets-13599461355?ref=ebtnebregn'
+                text : 'Code the Holidays',
+                url : 'https://www.madewithcode.com/'
             }
         },
         'sponsors' : {
