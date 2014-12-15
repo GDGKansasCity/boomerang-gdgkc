@@ -11,12 +11,12 @@ boomerang.factory('Config', function () {
         'meetup'        : 'GDG-Kansas-City', // MeetUp handle
         'facebook'      : '', // Facebook handle
         'cover' : {
-            title : 'DevFestKC 2014',
-            subtitle : 'Join us Nov. 15th for a fun filled day spanning many different Google developer tools and platforms, plus cool prizes!!',
-            url : '/images/devfestkc14.png',
+            title : 'Made With Code',
+            subtitle : 'Light up a tree at the White House through Made With Code!',
+            url : '/images/cover/made_with_code.png',
             button : {
-                text : 'Register Now!',
-                url : 'http://www.eventbrite.com/e/devfestkc-2014-tickets-13599461355?ref=ebtnebregn'
+                text : 'Code the Holidays',
+                url : 'https://www.madewithcode.com/'
             }
         },
         'sponsors' : {
@@ -25,7 +25,7 @@ boomerang.factory('Config', function () {
                 name : 'Google Developers',
                 url : 'https://developers.google.com/',
                 image : {
-                    url : '../images/Google-Developers.png'
+                    url : '../images/sponsor/Google-Developers.png'
                 }
             },
             1 : {
@@ -33,7 +33,7 @@ boomerang.factory('Config', function () {
                 name : 'Google Fiber',
                 url : 'https://fiber.google.com',
                 image : {
-                    url : '../images/google-fiber.jpg'
+                    url : '../images/sponsor/google-fiber.jpg'
                 }
             },
             2 : {
@@ -41,7 +41,7 @@ boomerang.factory('Config', function () {
                 name : 'Adknowledge',
                 url : 'https://www.adknowledge.com/',
                 image : {
-                    url : '../images/adknowledge.jpg'
+                    url : '../images/sponsor/adknowledge.jpg'
                 }
             },
             3 : {
@@ -49,7 +49,7 @@ boomerang.factory('Config', function () {
                 name : 'Orielly',
                 url : 'https://www.oreilly.com/',
                 image : {
-                    url : '../images/oreilly.gif'
+                    url : '../images/sponsor/oreilly.gif'
                 }
             }
         }
