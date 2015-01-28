@@ -192,12 +192,12 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
     $scope.events = {past: [], future: []};
     var url = "http://hub.gdgx.io/api/v1/chapters/"+Config.id+"/events?callback=JSON_CALLBACK";
     var httpConfig = { 'headers': {'Accept': 'application/json;'}, 'timeout': 2000 };
-    $http.jsonp(url, httpConfig).
-        success(function(data){
+    $http.jsonp(url, httpConfig)
+        .success(function(data) {
             var now = new Date();
             var items = data.items;
             var i, start;
-            for(i=items.length-1;i>=0;i--){
+            for(i=items.length-1;i>=0;i--) {
                 start = new Date(items[i].start);
 
                 items[i].start = start;
@@ -213,6 +213,21 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
             }
             $scope.loading = false;
         });
+  /*
+     var meetup_past_url = "http://api.meetup.com/2/events.json/?group_urlname="+Config.meetup+"&status=past&key="+Config.meetup_api+"&callback=JSON_CALLBACK";
+     $http.jsonp(meetup_past_url, httpConfig)
+         .success(function(data) {
+             var events = data.results;
+             var i;
+             for(i=events.length-1;i>=0;i--) {
+                 events[i].start = new Date(events[i].time);
+                 
+                 
+                 //console.log(start);
+             }
+             console.log(events);
+         });
+  */
 });
 
 boomerang.controller("PhotosControl", function ($scope, $http, Config) {

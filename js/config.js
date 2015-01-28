@@ -4,6 +4,7 @@ boomerang.factory('Config', function () {
         'name'          : 'GDG Kansas City',
         'id'            : '116015988631052616691', // Google+ id
         'google_api'    : 'AIzaSyDeKGXPKWtQ8uyfyoCfW6f1ZL0NW0lGtS0',
+        'meetup_api'    : '311d71d6e6b4c3a3b2b2b7c71145d7e',
         'pwa_id'        : '', // picasa web album id, must belong to Google+ id above
         'domain'        : 'gdgkc.org',// custom domain or [your app].appspot.com
         'youtube'       : 'GDGKansasCity', // YouTube handle
@@ -11,12 +12,12 @@ boomerang.factory('Config', function () {
         'meetup'        : 'GDG-Kansas-City', // MeetUp handle
         'facebook'      : '', // Facebook handle
         'cover' : {
-            title : 'Made With Code',
-            subtitle : 'Light up a tree at the White House through Made With Code!',
-            url : '/images/cover/made_with_code.png',
+            title : 'Developing Android Apps: Android Fundamentals',
+            subtitle : 'Sign up for the Udacity course and join us for a seven week course covering developing Android apps!',
+            url : '/images/cover/study_jams_02.2015.png',
             button : {
-                text : 'Code the Holidays',
-                url : 'https://www.madewithcode.com/'
+                text : 'Register Now!',
+                url : 'https://www.udacity.com/account/affiliate/StudyJam'
             }
         },
         'sponsors' : {

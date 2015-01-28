@@ -1,1 +1,1 @@
-{"runners":{"configs":{},"default":"system:/javascript/webapp/grunt"},"description":"GDG Kansas City website","type":"AngularJS","attributes":{}}
+{"runners":{"configs":{"system:/python/web/python27_gae1914":{"variables":{},"ram":0,"options":{}}},"default":"system:/python/web/python27_gae1914"},"description":"GDG Kansas City website","type":"GAEPython","attributes":{}}
