@@ -8,7 +8,8 @@ var boomerang = angular.module('gdgBoomerang', ['ngSanitize', 'ngRoute', 'ui.boo
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        $locationProvider.hashPrefix('!');
+        //$locationProvider.hashPrefix('!');
+        $locationProvider.html5Mode(true);
         $routeProvider.
           when("/about", {templateUrl: 'views/about.html', controller: "AboutControl"}).
           when("/news", {templateUrl: 'views/news.html', controller: "NewsControl"}).
