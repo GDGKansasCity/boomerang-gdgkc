@@ -46,13 +46,8 @@ boomerang.controller('AboutControl', function ($scope, $http, $timeout, $locatio
     $scope.cover = Config.cover;
     $scope.sponsors = Config.sponsors;
     $http.jsonp('https://www.googleapis.com/plus/v1/people/' + Config.id +
-<<<<<<< HEAD
             '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount%2Curls&key=' + Config.google_api)
         .success(function (data) {
-=======
-            '?callback=JSON_CALLBACK&fields=aboutMe%2Ccover%2Cimage%2CplusOneCount%2Curls&key=' + Config.google_api).
-        success(function (data) {
->>>>>>> pr/3
             $scope.desc = data.aboutMe;
             $sce.trustAsHtml($scope.desc);
 
@@ -197,21 +192,12 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
     $scope.events = {past: [], future: []};
     var url = "http://hub.gdgx.io/api/v1/chapters/"+Config.id+"/events?callback=JSON_CALLBACK";
     var httpConfig = { 'headers': {'Accept': 'application/json;'}, 'timeout': 2000 };
-<<<<<<< HEAD
-    $http.jsonp(url, httpConfig).
-        success(function(data){
-            var now = new Date();
-            var items = data.items;
-            var i, start;
-            for(i=items.length-1;i>=0;i--){
-=======
     $http.jsonp(url, httpConfig)
         .success(function(data) {
             var now = new Date();
             var items = data.items;
             var i, start;
             for(i=items.length-1;i>=0;i--) {
->>>>>>> pr/3
                 start = new Date(items[i].start);
 
                 items[i].start = start;
@@ -227,8 +213,6 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
             }
             $scope.loading = false;
         });
-<<<<<<< HEAD
-=======
   /*
      var meetup_past_url = "http://api.meetup.com/2/events.json/?group_urlname="+Config.meetup+"&status=past&key="+Config.meetup_api+"&callback=JSON_CALLBACK";
      $http.jsonp(meetup_past_url, httpConfig)
@@ -244,7 +228,6 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
              console.log(events);
          });
   */
->>>>>>> pr/3
 });
 
 boomerang.controller("PhotosControl", function ($scope, $http, Config) {
