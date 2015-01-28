@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"runners":{"configs":{"system:/python/web/python27_gae199":{"variables":{},"ram":0,"options":{}}},"default":"system:/python/web/python27_gae199"},"description":"GDG Kansas City website","type":"python","attributes":{}}
-=======
-{"runners":{"configs":{"system:/python/web/python27_gae1914":{"variables":{},"ram":0,"options":{}}},"default":"system:/python/web/python27_gae1914"},"description":"GDG Kansas City website","type":"GAEPython","attributes":{}}
->>>>>>> pr/3
+{"runners":{"configs":{"system:/python/web/python27_gae1914":{"ram":0,"variables":{},"options":{}}},"default":"system:/python/web/python27_gae1914"},"description":"GDG Kansas City website","type":"GAEPython","attributes":{}}
