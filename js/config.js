@@ -16,7 +16,7 @@ boomerang.factory('Config', function () {
             subtitle : 'Sign up for the Udacity course and join us for a seven week course covering developing Android apps!',
             url : '/images/cover/study_jams_02.2015.png',
             button : {
-                text : 'Register Now!',
+                text : 'Sign Up Today!',
                 url : 'https://www.udacity.com/account/affiliate/StudyJam'
             }
         },

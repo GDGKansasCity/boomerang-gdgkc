@@ -4,9 +4,6 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /rss.xml
-  script: controllers/rss.py
-
 - url: /(.*\.(gif|png|jpg|ico|js|css))
   static_files: \1
   upload: (.*\.(gif|png|jpg|ico|js|css))
@@ -19,5 +16,5 @@ handlers:
   static_files: sitemap.xml
   upload: sitemap.xml
 
-- url: .*
+- url: /.*
   script: main.py
