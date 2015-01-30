@@ -12,6 +12,13 @@
                 </p>
             </div>
         </div>
+        <div class="span12 visible-phone" ng-show="cover.url">
+            <div>
+                <p class="span12">
+                    <a class="btn btn-primary btn-small" ng-href="{$cover.button.url$}" ng-click="gaClick('button', 'click', cover.title)" target="_blank">{$cover.button.text$}</a>
+                </p>
+            </div>
+        </div>
         <hr>
         <p class="span10" ng-bind-html="desc"></p>
         <div class="span10">
@@ -26,7 +33,8 @@
           <h4>Sponsors:</h4>
           <div ng-repeat="sponsor in sponsors" class="sponsor">
               <a ng-href="{$sponsor.url$}" ng-click="gaClick('sponsor', 'click', sponsor.name)" target="_blank"><img ng-src="{$sponsor.image.url$}" alt="{$sponsor.name$} Sponsor Image" title="{$sponsor.name$} Sponsor Image"></a>
-          </div>
+          </div>
+
         </div>
     </div>
 </div>
