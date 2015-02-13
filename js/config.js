@@ -10,7 +10,7 @@ boomerang.factory('Config', function () {
         'youtube'       : 'GDGKansasCity', // YouTube handle
         'twitter'       : 'GDGKansasCity', // Twitter handle
         'meetup'        : 'GDG-Kansas-City', // MeetUp handle
-        'facebook'      : '', // Facebook handle
+        'facebook'      : 'GDGKansasCity', // Facebook handle
         'cover' : {
             title : 'Developing Android Apps: Android Fundamentals',
             subtitle : 'Sign up for the Udacity course and join us for a seven week course covering developing Android apps!',
