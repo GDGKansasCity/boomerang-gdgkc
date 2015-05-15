@@ -17,7 +17,7 @@ boomerang.factory('Config', function () {
             url : '/images/cover/study_jams_02.2015.png',
             button : {
                 text : 'Sign Up Today!',
-                url : 'https://www.udacity.com/account/affiliate/StudyJam'
+                url : 'http://gdgkansascity.github.io/studyjam15/'
             }
         },
         'sponsors' : {
