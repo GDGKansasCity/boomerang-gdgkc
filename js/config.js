@@ -14,7 +14,7 @@ boomerang.factory('Config', function () {
         'github'        : 'GDGKansasCity', // GitHub handle
         'cover' : {
             title : 'Google I/O 2015 [extended]',
-            subtitle : 'Didn&#39;t get tickets to Google I/O? Join GDG KC & Google Fiber!',
+            subtitle : "Didn't get tickets to Google I/O? Join GDG KC & Google Fiber!",
             url : '/images/cover/io15-extended-horz-custom.png',
             button : {
                 text : 'RSVP Today!',

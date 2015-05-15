@@ -2,20 +2,20 @@
     <p>&nbsp;</p>
     <div class="gdg_loading" ng-show="loading"></div>
     <div class="row" itemscope itemtype="http://schema.org/Event">
-        <img itemprop="image" ng-show="cover.url" class="span10" ng-src="{$cover.url$}" alt="Cover Image" title="Cover Image">
+        <img itemprop="image" ng-show="cover.url" class="span10" ng-src="{{ cover.url }}" alt="Cover Image" title="Cover Image">
         <div class="span12 hidden-phone" id="cover" ng-show="cover.url">
             <div id="cover-content">
-                <h1 class="span12" itemprop="name">{$cover.title$}</h1>
-                <p class="span12" itemprop="description">{$cover.subtitle$}</p>
+                <h1 class="span12" itemprop="name">{{ cover.title }}</h1>
+                <p class="span12" itemprop="description">{{ cover.subtitle }}</p>
                 <p class="span12">
-                    <a class="btn btn-primary btn-large" ng-href="{$cover.button.url$}" ng-click="gaClick('button', 'click', cover.title)" target="_blank">{$cover.button.text$}</a>
+                    <a class="btn btn-primary btn-large" ng-href="{{ cover.button.url }}" ng-click="gaClick('button', 'click', cover.title)" target="_blank">{{ cover.button.text }}</a>
                 </p>
             </div>
         </div>
         <div class="span12 visible-phone" ng-show="cover.url">
             <div>
                 <p class="span12">
-                    <a class="btn btn-primary btn-small" ng-href="{$cover.button.url$}" ng-click="gaClick('button', 'click', cover.title)" target="_blank">{$cover.button.text$}</a>
+                    <a class="btn btn-primary btn-small" ng-href="{{ cover.button.url }}" ng-click="gaClick('button', 'click', cover.title)" target="_blank">{{ cover.button.text }}</a>
                 </p>
             </div>
         </div>
@@ -25,14 +25,14 @@
           <h4>Organizers:</h4>
           <ul id="news-feed" class="span10" style="width:345px !important;">
               <li ng-repeat="person in organizers">
-                  <div class="g-person" data-width="286" data-href="{$person.link$}" data-layout="landscape" data-rel="author"></div>
+                  <div class="g-person" data-width="286" data-href="{{ person.link }}" data-layout="landscape" data-rel="author"></div>
               </li>
           </ul>
         </div>
         <div class="span10">
           <h4>Sponsors:</h4>
           <div ng-repeat="sponsor in sponsors" class="sponsor">
-              <a ng-href="{$sponsor.url$}" ng-click="gaClick('sponsor', 'click', sponsor.name)" target="_blank"><img ng-src="{$sponsor.image.url$}" alt="{$sponsor.name$} Sponsor Image" title="{$sponsor.name$} Sponsor Image"></a>
+              <a ng-href="{{ sponsor.url }}" ng-click="gaClick('sponsor', 'click', sponsor.name)" target="_blank"><img ng-src="{{ sponsor.image.url }}" alt="{{ sponsor.name }} Sponsor Image" title="{{ sponsor.name }} Sponsor Image"></a>
           </div>
 
         </div>
