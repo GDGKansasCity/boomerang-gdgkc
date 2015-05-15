@@ -5,7 +5,6 @@
         <li ng-repeat="article in news | orderBy:'date':true">
             <img class="icon" ng-src="{{ article.icon }}" alt="Article Icon" title="Article Icon">
             <p ng-bind-html="article.body"></p>
-
             <ul class="thumbnails">
                 <li ng-repeat="tn in article.thumbnails">
                     <a ng-href="{{ tn.link }}">
@@ -14,9 +13,7 @@
                 </li>
             </ul>
             <div class="meta">
-            <span class="from">
-
-            </span>
+                <span class="from"></span>
             </div>
             <span class="label"> <a ng-href="{{ article.via.url }}" target="_blank">View</a> </span>
             <span class="label"> {{ article.comments }} comment<span ng-show="article.comments != 1">s</span> </span>
