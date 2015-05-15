@@ -29,6 +29,7 @@ boomerang.controller('MainControl', function ($rootScope, $scope, $location, $wi
     $scope.meetup_link = Config.meetup ? 'http://www.meetup.com/' + Config.meetup : '';
     $scope.twitter_link = Config.twitter ? 'https://twitter.com/' + Config.twitter : '';
     $scope.facebook_link = Config.facebook ? 'https://www.facebook.com/' + Config.facebook : '';
+    $scope.github_link = Config.github ? 'https://github.com/' + Config.github : '';
     $scope.isNavCollapsed = true;
     $rootScope.canonical = Config.domain;
     
