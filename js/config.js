@@ -10,14 +10,15 @@ boomerang.factory('Config', function () {
         'youtube'       : 'GDGKansasCity', // YouTube handle
         'twitter'       : 'GDGKansasCity', // Twitter handle
         'meetup'        : 'GDG-Kansas-City', // MeetUp handle
-        'facebook'      : '', // Facebook handle
+        'facebook'      : 'GDGKansasCity', // Facebook handle
+        'github'        : 'GDGKansasCity', // GitHub handle
         'cover' : {
-            title : 'Developing Android Apps: Android Fundamentals',
-            subtitle : 'Sign up for the Udacity course and join us for a seven week course covering developing Android apps!',
-            url : '/images/cover/study_jams_02.2015.png',
+            title : 'Camp Google - Starts July 13th!',
+            subtitle : "Camp Google is a free camp for kids, full of fun science activities and adventures led by experts.",
+            url : '/images/cover/camp-google-2015.jpg',
             button : {
-                text : 'Sign Up Today!',
-                url : 'http://gdgkansascity.github.io/studyjam15/'
+                text : 'Read More',
+                url : 'https://camp.withgoogle.com/'
             }
         },
         'sponsors' : {

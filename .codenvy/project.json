@@ -1,1 +1,0 @@
-{"mixinTypes":["contribution"],"builders":{"configs":{}},"runners":{"configs":{"system:/python/web/python27_gae1914":{"ram":0,"variables":{},"options":{}}},"default":"system:/python/web/python27_gae1914"},"description":"GDG Kansas City website","type":"GAEPython","attributes":{"contribute_branch":["master"],"contribute_mode":["contribute"],"language":["python"]}}
