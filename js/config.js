@@ -13,12 +13,12 @@ boomerang.factory('Config', function () {
         'facebook'      : 'GDGKansasCity', // Facebook handle
         'github'        : 'GDGKansasCity', // GitHub handle
         'cover' : {
-            title : 'Google I/O 2015 [extended]',
-            subtitle : "Didn't get tickets to Google I/O? Join GDG KC & Google Fiber!",
-            url : '/images/cover/io15-extended-horz-custom.png',
+            title : 'Camp Google - Starts July 13th!',
+            subtitle : "Camp Google is a free camp for kids, full of fun science activities and adventures led by experts.",
+            url : '/images/cover/camp-google-2015g',
             button : {
-                text : 'RSVP Today!',
-                url : 'https://plus.google.com/events/ctggi4tsq43pp1qlsbrrc44i2fk'
+                text : 'Read More',
+                url : 'https://camp.withgoogle.com/'
             }
         },
         'sponsors' : {
