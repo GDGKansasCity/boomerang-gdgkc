@@ -40,18 +40,10 @@ boomerang.factory('Config', function () {
             },
             2 : {
                 id : 3,
-                name : 'Adknowledge',
-                url : 'https://www.adknowledge.com/',
+                name : 'Women Techmakers',
+                url : 'https://www.womentechmakers.com/',
                 image : {
-                    url : '../images/sponsor/adknowledge.jpg'
-                }
-            },
-            3 : {
-                id : 4,
-                name : 'Orielly',
-                url : 'https://www.oreilly.com/',
-                image : {
-                    url : '../images/sponsor/oreilly.gif'
+                    url : '../images/sponsor/wtm.png'
                 }
             }
         }
