@@ -188,7 +188,7 @@ boomerang.controller("EventsControl", function ($scope, $http, Config) {
     $scope.$parent.activeTab = "events";
     
     $scope.events = {past: [], future: []};
-    var url = "http://hub.gdgx.io/api/v1/chapters/"+Config.id+"/events?callback=JSON_CALLBACK";
+    var url = "https://hub.gdgx.io/api/v1/chapters/"+Config.id+"/events?callback=JSON_CALLBACK";
     var httpConfig = { 'headers': {'Accept': 'application/json;'}, 'timeout': 2000 };
     $http.jsonp(url, httpConfig)
         .success(function(data) {
