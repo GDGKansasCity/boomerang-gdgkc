@@ -35,7 +35,7 @@ boomerang.factory('Config', function () {
                 name : 'Google Fiber',
                 url : 'https://fiber.google.com',
                 image : {
-                    url : '../images/sponsor/google-fiber.jpg'
+                    url : '../images/sponsor/googlefiber.png'
                 }
             },
             2 : {
