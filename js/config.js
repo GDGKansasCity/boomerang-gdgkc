@@ -53,6 +53,14 @@ boomerang.factory('Config', function () {
                 image : {
                     url : '../images/sponsor/mwsu.png'
                 }
+            },
+            4 : {
+                id : 5,
+                name : 'The Nerdery',
+                url : 'https://nerdery.com',
+                image : {
+                    url : '../images/sponsor/nerdery.png'
+                }
             }
         }
     };
