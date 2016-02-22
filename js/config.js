@@ -45,6 +45,14 @@ boomerang.factory('Config', function () {
                 image : {
                     url : '../images/sponsor/wtm.png'
                 }
+            },
+            3 : {
+                id : 4,
+                name : 'Missouri Western State University',
+                url : 'https://www.missouriwestern.edu/psychology/graduate',
+                image : {
+                    url : '../images/sponsor/mwsu.png'
+                }
             }
         }
     };
