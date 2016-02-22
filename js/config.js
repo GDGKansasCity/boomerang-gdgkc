@@ -61,6 +61,14 @@ boomerang.factory('Config', function () {
                 image : {
                     url : '../images/sponsor/nerdery.png'
                 }
+            },
+            5 : {
+                id : 6,
+                name : 'Swappa, LLC',
+                url : 'https://swappa.com/',
+                image : {
+                    url : '../images/sponsor/swappa.png'
+                }
             }
         }
     };
