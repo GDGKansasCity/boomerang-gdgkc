@@ -13,12 +13,12 @@ boomerang.factory('Config', function () {
         'facebook'      : 'GDGKansasCity', // Facebook handle
         'github'        : 'GDGKansasCity', // GitHub handle
         'cover' : {
-            title : 'DevFest KC - February 20th!',
-            subtitle : "Attend Mobile and Web sessions lead by the experts and have lots fun!",
-            url : '/images/cover/devfest-2016.png',
+            title : 'Android Study Jam 2016',
+            subtitle : "Starting March 12th, attend for free training and build your first native Android app!",
+            url : '/images/cover/study_jams_02.2015.png',
             button : {
-                text : 'More Info',
-                url : 'https://devfest.gdgkc.org/'
+                text : 'Register',
+                url : 'http://goo.gl/forms/NwqaxYL2LA'
             }
         },
         'sponsors' : {
